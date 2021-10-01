@@ -1,9 +1,11 @@
+ARG WDIR=/docker-deps-study
 FROM node:16-slim
+ARG WDIR
 
-WORKDIR /app
-COPY package.json package-lock.json /app
+WORKDIR ${WDIR}
+COPY package.json package-lock.json ${WDIR}
 RUN npm i --production
 
-COPY . /app
+COPY . ${WDIR}
 
 CMD ["npm", "start"]
